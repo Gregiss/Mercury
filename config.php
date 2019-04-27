@@ -15,12 +15,12 @@ $password = 'SnjxlmBXbp';
 if($manutencao == 0){
 //Conexao com o banco de dados
 require 'database.php';
-if(isset($_COOKIE['iduser']) && isset($_COOKIE['cry'])){
+if(isset($_COOKIE['iduser']) || isset($_COOKIE['cry'])){
   $PDO = db_connect();
-
+ 
   $iduser = $_COOKIE['iduser'];
   $cry = $_COOKIE['cry'];
- 
+
   $sql = "SELECT id, cry, email, username FROM users WHERE id = :iduser AND cry = :cry";
   $stmt = $PDO->prepare($sql);
   
@@ -30,19 +30,16 @@ if(isset($_COOKIE['iduser']) && isset($_COOKIE['cry'])){
   $stmt->execute();
   
   $users = $stmt->fetchAll(PDO::FETCH_ASSOC);
-  
   if (count($users) <= 0)
   {
-      $data = "senha";
-      echo $data;
-      exit;
+  setcookie("iduser", "");
+  setcookie("cry", "");
   }
-  if (count($users) <= 0){
+
+  $user = $users[0];
+  if($user['cry'] <> $cry){
     setcookie("iduser", "");
     setcookie("cry", "");
-  }
-  else{
-    $user = $users[0];
   }
 
 }
