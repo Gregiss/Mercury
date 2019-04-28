@@ -1,6 +1,7 @@
 <?php
 $PDO = db_connect();
  
+if(isset($_COOKIE['iduser']) && isset($_COOKIE['cry'])){
 $iduser = $_COOKIE['iduser'];
 $cry = $_COOKIE['cry'];
 
@@ -20,4 +21,6 @@ setcookie("cry", "");
 }
 
 $user = $users[0];
+}
+
 require('vendor/autoload/template/index.php');

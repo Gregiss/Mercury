@@ -12,17 +12,16 @@ $work = 1; //Protect
 if($manutencao == 0){
 //Conexao com o banco de dados
 require 'database.php';
-if(isset($_COOKIE['iduser']) && isset($_COOKIE['cry'])){
 
 //Tenta uma conexão com banco de dados
 try{
-    require 'user.php';
+  require_once('user.php');
 }
 catch(PDOException $ex){
   require_once('vendor/autoload/template/html/error/index.php');
 }
 
-}
+
 }
 else{
   require_once('vendor/autoload/template/html/error/manu.php');
