@@ -24,7 +24,7 @@
 
 <div class="center" style="transform: translate(-50%, -50%);">
 <h1>Ocorreu um erro ao conectar ao banco de dados</h1>
-<h2><?php echo 'ERROR: ' . $e->getMessage();?></h2>
+<h2><?php echo 'ERROR: ' . $ex->getMessage();?></h2>
 </div>
 
 </div>

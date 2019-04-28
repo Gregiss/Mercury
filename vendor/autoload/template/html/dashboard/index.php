@@ -71,6 +71,13 @@ if(isset($work)){?>
 <div class="bottom"></div>
 
 <div class="overlay">
+
+<?php if(isset($_COOKIE['iduser']) || isset($_COOKIE['cry'])){?>
+        <div class="table infouser">
+            <h1><?php echo $user['email'];?></h1>
+            <h1>@<?php echo $user['username'];?></h1>
+        </div>
+    <?php } else{?>
     <div class="table login" id="okay">
     <div class="errort"></div>
         <h1>Login</h1>
@@ -92,6 +99,8 @@ if(isset($work)){?>
         <button data-id="1">Cadastrar</button>
         </form>
     </div>
+    <?php } ?>
+
     <div class="table error" id="okay3">
         <h1>Ocorreu um erro</h1>
     </div>

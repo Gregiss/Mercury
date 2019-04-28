@@ -19,6 +19,9 @@ function openmodal(){
         else if(href == 1){
             showregister();
         }
+        else if(href == 2){
+            showinfouser();
+        }
         else{
             showerror();
         }
@@ -61,6 +64,22 @@ function openmodal(){
         }
     });
 
+    $(".infouser").hover(function(){
+        hover = 0;
+    });
+
+    $(".infouser").mouseover(function(){
+        hover = 1;
+    });
+
+    function showinfouser(){
+        $(".overlay").css("z-index", "60");
+        $("html, body").animate({ scrollTop: 0 }, "slow");
+        $("body").css("overflow", "hidden");
+        $(".overlay .infouser").css("transform", "translate(-50%, -50%)");
+        $(".overlay .product").css("transform", "translate(-1350%, -50%)");
+    }
+
     function showmodal(){
         $(".overlay").css("z-index", "60");
         $("html, body").animate({ scrollTop: 0 }, "slow");
@@ -78,7 +97,9 @@ function openmodal(){
         $(".overlay .login").css("transform", "translate(-1350%, -50%)");
         $(".overlay .register").css("transform", "translate(-1350%, -50%)");
         $(".overlay .error").css("transform", "translate(-1350%, -50%)");
+        $(".overlay .product").css("transform", "translate(-1350%, -50%)");
         $("#okay4").css("transform", "translate(-1350%, -50%)");
+        $(".overlay .infouser").css("transform", "translate(-1350%, -50%)");
     }
     
     function showlogin(){
@@ -87,6 +108,7 @@ function openmodal(){
         $(".overlay .login").css("transform", "translate(-50%, -50%)");
         $(".overlay .register").css("transform", "translate(-1350%, -50%)");
         $(".overlay .error").css("transform", "translate(-1350%, -50%)");
+        $(".overlay .product").css("transform", "translate(-1350%, -50%)");
         $("#okay4").css("transform", "translate(-1350%, -50%)");
     }
     
@@ -111,6 +133,7 @@ function openmodal(){
         $(".overlay .error").css("transform", "translate(-1350%, -50%)");
         $(".overlay .login").css("transform", "translate(-1350%, -50%)");
         $("#okay4").css("transform", "translate(-50%, -50%)");
+        $(".overlay .infouser").css("transform", "translate(-1350%, -50%)");
     }
 
     function produtosclo(){
@@ -138,6 +161,7 @@ function openmodal(){
         $("#okay4 #cancelar").click(function(){
             closemodal();
         });
+
     }
 
     produtosclo();

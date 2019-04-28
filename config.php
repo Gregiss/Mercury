@@ -8,42 +8,21 @@ $errormessage = 'Estamos em manutenção volte mais tarde!'; //Mensangem de manu
 
 $work = 1; //Protect
 
-//Config MySql
-$username = 'sql10289742';
-$password = 'SnjxlmBXbp';
-
+//MySql Connect
 if($manutencao == 0){
 //Conexao com o banco de dados
 require 'database.php';
-if(isset($_COOKIE['iduser']) || isset($_COOKIE['cry'])){
-  $PDO = db_connect();
- 
-  $iduser = $_COOKIE['iduser'];
-  $cry = $_COOKIE['cry'];
+if(isset($_COOKIE['iduser']) && isset($_COOKIE['cry'])){
 
-  $sql = "SELECT id, cry, email, username FROM users WHERE id = :iduser AND cry = :cry";
-  $stmt = $PDO->prepare($sql);
-  
-  $stmt->bindParam(':iduser', $iduser);
-  $stmt->bindParam(':cry', $cry);
-  
-  $stmt->execute();
-  
-  $users = $stmt->fetchAll(PDO::FETCH_ASSOC);
-  if (count($users) <= 0)
-  {
-  setcookie("iduser", "");
-  setcookie("cry", "");
-  }
-
-  $user = $users[0];
-  if($user['cry'] <> $cry){
-    setcookie("iduser", "");
-    setcookie("cry", "");
-  }
+//Tenta uma conexão com banco de dados
+try{
+    require 'user.php';
+}
+catch(PDOException $ex){
+  require_once('vendor/autoload/template/html/error/index.php');
+}
 
 }
-require('vendor/autoload/template/index.php');
 }
 else{
   require_once('vendor/autoload/template/html/error/manu.php');
